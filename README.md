@@ -24,6 +24,28 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 base16_tomorrow-night
 ```
 
+#### Neovim
+
+1. Install neovim in debian based linux
+
+```bash
+apt install neovim
+
+# create and symlink vimrc for neovim
+mkdir -p ~/.config/nvim
+touch ~/.config/nvim/init.vim
+echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" >> ~/.config/nvim/init.vim
+echo "let &packpath = &runtimepath" >> ~/.config/nvim/init.vim
+echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
+```
+
+2. Setup Vundle for plugin management
+
+```bash
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+3. Install the plugins via Vundle by runing `:PluginInstall` in nvim
+
 ### Reference
 
 https://gist.github.com/MohamedAlaa/2961058
