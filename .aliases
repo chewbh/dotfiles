@@ -1,0 +1,54 @@
+#!/bin/bash
+# Aliases
+# vim: syntax=sh
+
+# Misc
+alias vi='vim'
+alias ri='ri -f ansi'
+
+# shortcuts
+alias c='clear'
+alias x='exit'
+alias q='exit'
+alias h='history'
+alias j='jobs -l'
+
+# grep
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# Time
+alias now='date +"%T"'
+alias nowtime='now'
+alias nowdate='date +"%d-%m-%Y"'
+
+# can i haz color
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias ll='ls -lah'
+alias la='ls -A'
+alias l='ls -lAh'
+
+# Find large files and directories
+alias fat='du -a | sort -n -r | head -n 20'
+
+# Show open ports
+alias ports='netstat -tulanp'
+
+# Memory
+alias meminfo='free -m -l -t'
+
+# Get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+
+# Get top process eating cpu
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+
+alias psjava='ps -ef | grep java'
+
+# Log
+alias tf='tail -F -n 100'
