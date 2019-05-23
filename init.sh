@@ -9,8 +9,13 @@
 
 # download and install common utilities
 sudo apt update
-sudo apt -y --allow-change-held-packages install zsh wget curl git git-core htop jq tree vim neovim mosh openssh-server ansible
+sudo apt -y --allow-change-held-packages install zsh wget curl git git-core htop jq tree vim mosh openssh-server fzf ctags ansible
 sudo apt -y --allow-change-held-packages install cifs-utils smbclient nfs-common
+
+# install neovim
+sudo wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O /usr/local/bin/
+sudo chmod +x /usr/local/bin/nvim.appimage 
+sudo ln -s /usr/local/bin/nvim.appimage /usr/local/bin/nvim
 
 # install Base16 theme for shell                                         
 if [ ! -d "$HOME/.config/base16-shell" ]; then                             git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell                                                               
@@ -18,11 +23,10 @@ fi
 
 git clone https://github.com/powerline/fonts.git --depth=1
 fonts/install.sh
-#resolves issue where terminess pwerline is ignored by default and must be explicitly allowed via fontconfig
+#resolves issue where terminal powerline is ignored by default and must be explicitly allowed via fontconfig
 mkdir -p ~/.config/fontconfig/conf.d/ && cp fonts/fontconfig/50-enable-terminess-powerline.conf ~/.config/fontconfig/conf.d/
 # refresh font cache
 fc-cache -vf
-
 
 # download zprezto
 if [ ! -d "$HOME/.zprezto" ]; then

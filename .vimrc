@@ -27,9 +27,39 @@ Plugin 'scrooloose/nerdtree'  " tree explorer
 Plugin 'majutsushi/tagbar'    " class outline viewer (browse tags of the current file)
 Plugin 'ervandew/supertab'    " use <tab> for all insert completion
 Plugin 'BufOnly.vim'          " script to unload all buffers but the current one
-Plugin 'wesQ3/vim-windowswap' " swap windows in vim without ruining layout
+Plugin 'jeetsukumaran/vim-buffergator' " list, select, and switch between buffers
+Plugin 'wesQ3/vim-windowswap' " navigate or swap windows in vim without ruining layout
+Plugin 'benmills/vimux'       " easily interact with tmux from vim
+" Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'junegunn/fzf.vim'     " enable use of fzf for vim (see below)
+Plugin 'junegunn/fzf'         " fuzzy finder and code search
+Plugin 'godlygeek/tabular'    " tool for line up text
+Plugin 'gilsondev/searchtasks.vim' " search labels often used as TODO, FIXME, and XXX
+Plugin 'tpope/vim-dispatch'   " kick off builds and test suites using async adapter (e.g. tmux, screen)
+
+" programming support
+Plugin 'jiangmiao/auto-pairs' " automatically insert auto-close chars
+" Plugin 'Townk/vim-autoclose'  " automatically insert auto-close chars
+Plugin 'tomtom/tcomment_vim'  " extensible & universal code comment plugin
+Plugin 'tobyS/vmustache'      " enable use of logic-less mustache template system
+Plugin 'janko-m/vim-test'     " run test in vim
+Plugin 'neomake/neomake'      " async linting and make framework
+
+" markdown or general writing
+Plugin 'reedes/vim-pencil'    " tweak vim to ease writing using vim
+Plugin 'plasticboy/vim-markdown' " syntax highlightin, rules, mappings for markdown
+
+" git support
+Plugin 'tpope/vim-fugitive'   " git wrapper in vim
+Plugin 'kablamo/vim-git-log'  " view git log interactively, side by side diffs "
+Plugin 'gregsexton/gitv'
+
+if has('nvim')               " list of plugins usable in modern vim
+  Plugin 'w0rp/ale'           " syntax checker
+endif
 
 Plugin 'SirVer/ultisnips'     " snippet for vim (pynvim is needed)
+" Plugin 'honza/vim-snippets'                   " ignore (snippet for vim, python not needed)
 " Plugin 'ncm2/ncm2-ultisnips'
 "" Press enter key to trigger snippet expansion
 "" The parameters are the same as `:help feedkeys()`
@@ -43,13 +73,22 @@ Plugin 'SirVer/ultisnips'     " snippet for vim (pynvim is needed)
 
 Plugin 'udalov/kotlin-vim'
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline'         " beautiful status/tagline
+Plugin 'vim-airline/vim-airline-themes'  " theme for vim-airline
+Plugin 'ryanoasis/vim-devicons'          " add file type glyphs
+Plugin 'AnsiEsc.vim'                     " support ansi escape sequences
 
+Plugin 'morhetz/gruvbox'                 " Retro groove color scheme for Vim
+Plugin 'dracula/vim', {'rtp': 'vim/'}    " dark theme
+Plugin 'junegunn/limelight.vim'          " hyperfocus-writing
+Plugin 'romainl/Apprentice'              " dark, low-contrast, color scheme
+Plugin 'Lokaltog/vim-distinguished'      " another dark theme
+Plugin 'w0ng/vim-hybrid'                 " dark color theme from tomorrow-night
+Plugin 'AlessandroYorba/Sierra'          " dark color theme
+Plugin 'ajh17/Spacegray.vim'             " loosely based on spacegray color scheme
 
-if has('nvim')               " list of plugins usable in modern vim
-  Plugin 'w0rp/ale'
-endif
+" OSX stupid backspace fix
+set backspace=indent,eol,start
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -113,6 +152,17 @@ let g:elite_mode=1 "enable elite mode, no arrows
 " enable syntax coloring
 syntax enable
 syntax on
+
+""""""""""""""""""""""""""""""""""""""
+nnoremap <C-p> :Files<Enter>
+if has('nvim')
+  aug fzf_setup
+    au!
+    au TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
+  aug END
+end
+""""""""""""""""""""""""""""""""""""""
+
 
 " autocmd vimenter * NERDTree
 

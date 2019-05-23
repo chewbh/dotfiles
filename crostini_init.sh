@@ -8,6 +8,9 @@ fi
 # install tilix
 sudo apt -y install tilix
 
+# install fuse support for running tools using AppImage
+sudo apt -y fuse libfuse2
+
 # ensure sh scripts in profile.d will be executed 
 # - minic login shell experience
 # weird that Crostini login shell does not conform to this behavior 
