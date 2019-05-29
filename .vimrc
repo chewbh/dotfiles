@@ -4,7 +4,6 @@
 if &compatible
   set nocompatible   " allow vim specific settings even if break vi bindings
 endif
-
 set encoding=utf8
 
 " disable file type for vundle
@@ -18,9 +17,6 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-" base16 color
-Plugin 'chriskempson/base16-vim'
 
 " utility
 Plugin 'scrooloose/nerdtree'  " tree explorer
@@ -44,6 +40,7 @@ Plugin 'tomtom/tcomment_vim'  " extensible & universal code comment plugin
 Plugin 'tobyS/vmustache'      " enable use of logic-less mustache template system
 Plugin 'janko-m/vim-test'     " run test in vim
 Plugin 'neomake/neomake'      " async linting and make framework
+Plugin 'udalov/kotlin-vim'
 
 " markdown or general writing
 Plugin 'reedes/vim-pencil'    " tweak vim to ease writing using vim
@@ -71,8 +68,7 @@ Plugin 'SirVer/ultisnips'     " snippet for vim (pynvim is needed)
 "let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 "let g:UltiSnipsRemoveSelectModeMappings = 0
 
-Plugin 'udalov/kotlin-vim'
-
+Plugin 'chriskempson/base16-vim'         " base 16 color
 Plugin 'vim-airline/vim-airline'         " beautiful status/tagline
 Plugin 'vim-airline/vim-airline-themes'  " theme for vim-airline
 Plugin 'ryanoasis/vim-devicons'          " add file type glyphs
@@ -86,9 +82,6 @@ Plugin 'Lokaltog/vim-distinguished'      " another dark theme
 Plugin 'w0ng/vim-hybrid'                 " dark color theme from tomorrow-night
 Plugin 'AlessandroYorba/Sierra'          " dark color theme
 Plugin 'ajh17/Spacegray.vim'             " loosely based on spacegray color scheme
-
-" OSX stupid backspace fix
-set backspace=indent,eol,start
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -107,11 +100,8 @@ filetype plugin indent on    " required
 """""""""""""""""""""""""""
 " other settings
 """""""""""""""""""""""""""
-" enable the use of base16 color for vim
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+" OSX stupid backspace fix
+set backspace=indent,eol,start
 
 " ensure config work for vim + nvim (ttymouse was removed in nvim)
 if !has('nvim')
@@ -122,6 +112,12 @@ endif
 " enable detection of pig scripts
 augroup filetypedetect
   au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
+augroup END
+
+" Markdown Syntax Support
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
 " treat tab as 2 spaces
@@ -193,18 +189,36 @@ endfunction
 
 call s:source_file('mappings.vim')
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" color, style and theme configuration
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+set t_Co=256
+set background=dark
+
+" neovim/vim true color support
 if (has("termguicolors"))
   set termguicolors
 endif
 
-let base16colorspace=256
-"colorscheme spacegray
+if filereadable(expand("~/.vimrc_background"))
+  " enable the use of base16 color for vim
+  " access colot present in 256 colorspace
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
+" color scheme
+colorscheme spacegray
+let g:spacegray_underline_search = 1
+let g:spacegray_use_italics = 1
+"let g:spacegray_italicize_comments = 1
+
 
 " vim-airline configuration
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1 
-"let g:airline_theme='hybrid'
-let g:airline_theme='base16_spacemacs'
+let g:airline_theme='hybrid'
+" let g:airline_theme='base16_spacemacs'
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1 
 
@@ -213,5 +227,17 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
 
+
+
+" Disable arrow movement, resize splits instead.
+"if get(g:, 'elite_mode')
+"	nnoremap <Up>    :resize +2<CR>
+"	nnoremap <Down>  :resize -2<CR>
+"	nnoremap <Left>  :vertical resize +2<CR>
+"	nnoremap <Right> :vertical resize -2<CR>
+"endif
 
