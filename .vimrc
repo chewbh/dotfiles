@@ -97,6 +97,33 @@ filetype plugin indent on    " required
 
 " see :h vundle for more details or wiki for FAQ
 
+""""""""""""""""""""""""""""
+" utility functions
+""""""""""""""""""""""""""""
+
+function! s:source_file(path, ...) abort
+	let use_global = get(a:000, 0, ! has('vim_starting'))
+
+	let abspath = resolve(expand($HOME.'/dotfiles/vim_config/'.a:path))
+	if ! use_global
+		execute 'source' fnameescape(abspath)
+		return
+	endif
+
+	let content = map(readfile(abspath),
+		\ "substitute(v:val, '^\\W*\\zsset\\ze\\W', 'setglobal', '')")
+	let tempfile = tempname()
+	try
+		call writefile(content, tempfile)
+		execute printf('source %s', fnameescape(tempfile))
+	finally
+		if filereadable(tempfile)
+			call delete(tempfile)
+		endif
+	endtry
+endfunction
+
+
 """""""""""""""""""""""""""
 " other settings
 """""""""""""""""""""""""""
@@ -123,6 +150,7 @@ augroup END
 " treat tab as 2 spaces
 set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab 
 
+"se mouse+=a
 set mouse-=a     " avoid entering visual mode in vim with mouse selection 
 set incsearch    " find as you type
 set ignorecase   " ignore case in search
@@ -164,28 +192,6 @@ end
 
 " additional key bindings
 "map <C-n> :NERDTreeToggle<CR>
-
-function! s:source_file(path, ...) abort
-	let use_global = get(a:000, 0, ! has('vim_starting'))
-
-	let abspath = resolve(expand($HOME.'/dotfiles/vim_config/'.a:path))
-	if ! use_global
-		execute 'source' fnameescape(abspath)
-		return
-	endif
-
-	let content = map(readfile(abspath),
-		\ "substitute(v:val, '^\\W*\\zsset\\ze\\W', 'setglobal', '')")
-	let tempfile = tempname()
-	try
-		call writefile(content, tempfile)
-		execute printf('source %s', fnameescape(tempfile))
-	finally
-		if filereadable(tempfile)
-			call delete(tempfile)
-		endif
-	endtry
-endfunction
 
 call s:source_file('mappings.vim')
 

@@ -12,6 +12,14 @@ sudo apt update
 sudo apt -y --allow-change-held-packages install zsh wget curl git git-core htop jq tree vim mosh openssh-server fzf ctags ansible
 sudo apt -y --allow-change-held-packages install cifs-utils smbclient nfs-common
 
+# install tmux (latest)
+if [ "$(. /etc/os-release; echo $PRETTY_NAME)" = "Debian GNU/Linux 9 (stretch)" ]; 
+then 
+  sudo apt -y --allow-change-held-packages install -t stretch-backports tmux;
+else
+  sudo apt -y --allow-change-held-packages install tmux;
+fi
+
 # install neovim
 sudo wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O /usr/local/bin/
 sudo chmod +x /usr/local/bin/nvim.appimage 
