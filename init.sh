@@ -32,6 +32,7 @@ fi
 
 git clone https://github.com/powerline/fonts.git --depth=1
 fonts/install.sh
+rm -rf fonts
 #resolves issue where terminal powerline is ignored by default and must be explicitly allowed via fontconfig
 mkdir -p ~/.config/fontconfig/conf.d/ && cp fonts/fontconfig/50-enable-terminess-powerline.conf ~/.config/fontconfig/conf.d/
 # refresh font cache
