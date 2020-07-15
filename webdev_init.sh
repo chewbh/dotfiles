@@ -7,7 +7,7 @@
 if [ ! -d "${XDG_CONFIG_HOME/:-$HOME/.}nvm"  ]; then
   [ -z "$NVM_DIR" ] && NVM_DIR="${XDG_CONFIG_HOME:-$HOME/.}/nvm"
   mkdir -p $NVM_DIR
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | zsh
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh | zsh
   export NVM_DIR
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
