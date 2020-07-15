@@ -14,13 +14,8 @@ if [ ! -d "${XDG_CONFIG_HOME/:-$HOME/.}nvm"  ]; then
   command -v nvm
 fi
 
-echo "install latest node and specifically v8.9.3"
+echo "install latest node via nvm"
 nvm install node
-nvm install 8.9.3
-
-echo "set v8.9.3 as default"
-nvm use 8.9.3
-nvm alias default 8.9.3
 
 echo "check version of runtime Node.JS is switched correct"
 node -v
@@ -30,8 +25,4 @@ node -v
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update && sudo apt -y install --no-install-recommends yarn
-
-curl -L https://go.microsoft.com/fwlink/?LinkID=760868 > code.deb
-sudo apt -y install ./code.deb
-rm code.deb
 
