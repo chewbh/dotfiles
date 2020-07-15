@@ -21,7 +21,7 @@ else
 fi
 
 # install neovim
-sudo wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O /usr/local/bin/
+sudo wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O /usr/local/bin/nvim.appimage
 sudo chmod +x /usr/local/bin/nvim.appimage 
 sudo ln -s /usr/local/bin/nvim.appimage /usr/local/bin/nvim
 
@@ -37,7 +37,7 @@ mkdir -p ~/.config/fontconfig/conf.d/ && cp fonts/fontconfig/50-enable-terminess
 fc-cache -vf
 
 # download zprezto
-if [ ! -d "$HOME/.zprezto" ]; then
+if [ ! -f "$HOME/.zprezto" ]; then
   echo "Downloading zprezto framework for zsh shell environment..."
   /bin/zsh -c "git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto""
 fi
@@ -61,17 +61,17 @@ rm "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/zshrc
 ln $HOME/dotfiles/.zshrc "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/zshrc
 
 # switch to zsh
-#chsh -s /bin/zsh
+chsh -s /bin/zsh
 
-if [ ! "$HOME/.editorconfig" ]; then
+if [ ! -f "$HOME/.editorconfig" ]; then
   ln -s $HOME/dotfiles/.editorconfig $HOME/.editorconfig
 fi
 
-if [ ! "$HOME/.tmux.conf" ]; then                                    
+if [ ! -f "$HOME/.tmux.conf" ]; then                                    
   ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf               
 fi
 
-if [ ! "$HOME/.vimrc" ]; then                                   
+if [ ! -f "$HOME/.vimrc" ]; then                                   
   ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc                  
   ln -s $HOME/dotfiles/.vimrc_background $HOME/.vimrc_background
 fi
