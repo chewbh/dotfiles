@@ -9,7 +9,7 @@
 
 # download and install common utilities
 sudo apt update
-sudo apt -y --allow-change-held-packages install zsh wget curl git git-core htop jq tree vim mosh openssh-server fzf ctags ansible
+sudo apt -y --allow-change-held-packages install zsh wget curl git git-core htop jq tree vim mosh openssh-server fzf ctags ansible python3-pip
 sudo apt -y --allow-change-held-packages install cifs-utils smbclient nfs-common
 
 # install tmux (latest)
@@ -21,6 +21,7 @@ else
 fi
 
 # install neovim
+pip3 install pynvim
 sudo wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O /usr/local/bin/nvim.appimage
 sudo chmod +x /usr/local/bin/nvim.appimage 
 sudo ln -s /usr/local/bin/nvim.appimage /usr/local/bin/nvim
