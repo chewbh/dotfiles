@@ -128,4 +128,8 @@ fi
 # install Vundle plugins defined in .vimrc
 vim +PluginInstall +qall
 
-
+# setup project structure
+sudo mkdir /development
+sudo chown $USER:$USER /development
+mkdir /development/projects
+ln -s /developments $HOME/developments
