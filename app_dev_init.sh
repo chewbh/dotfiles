@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# ensure zsh environment setup already applied before setting up nvm
-. $HOME/.zshrc
 
 # install docker-ce
 sudo apt -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common
