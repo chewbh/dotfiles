@@ -71,4 +71,3 @@ conda upgrade conda
 conda upgrade --all
 conda install -y nb_conda_kernels
 
-

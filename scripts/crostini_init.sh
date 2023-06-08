@@ -31,4 +31,3 @@ fi
 echo "#!/bin/bash" >> $HOME/dotfiles/.zsh_os_custom.sh
 echo ". /etc/profile" >> $HOME/dotfiles/.zsh_os_custom.sh
 
-
