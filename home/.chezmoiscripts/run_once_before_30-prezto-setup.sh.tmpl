@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+set -eu
+
+## Make prezto framework available in system. 
+## Normally, this should be done via git clone via chezmoi external but for some reason 
+## we have not access to the repo
+
+# remove any existing prezto framework if exists
+[ -d "{{ .chezmoi.homeDir }}/.zprezto" ] && rm -rf "{{ .chezmoi.homeDir }}/.zprezto"
+
+# copy the cached prezto version to home
+cp -R "{{ .chezmoi.sourceDir }}/../cached/prezto" "{{ .chezmoi.homeDir }}/.zprezto"

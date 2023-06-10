@@ -81,7 +81,8 @@ Plugin 'romainl/Apprentice'              " dark, low-contrast, color scheme
 Plugin 'Lokaltog/vim-distinguished'      " another dark theme
 Plugin 'w0ng/vim-hybrid'                 " dark color theme from tomorrow-night
 Plugin 'AlessandroYorba/Sierra'          " dark color theme
-Plugin 'ajh17/Spacegray.vim'             " loosely based on spacegray color scheme
+" Plugin 'ajh17/Spacegray.vim'             
+" loosely based on spacegray color scheme
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -104,7 +105,7 @@ filetype plugin indent on    " required
 function! s:source_file(path, ...) abort
 	let use_global = get(a:000, 0, ! has('vim_starting'))
 
-	let abspath = resolve(expand($HOME.'/dotfiles/vim_config/'.a:path))
+	let abspath = resolve(expand($HOME."/".a:path))
 	if ! use_global
 		execute 'source' fnameescape(abspath)
 		return
@@ -193,7 +194,7 @@ end
 " additional key bindings
 "map <C-n> :NERDTreeToggle<CR>
 
-call s:source_file('mappings.vim')
+call s:source_file('.config/nvim/mappings.vim')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " color, style and theme configuration
@@ -214,7 +215,7 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 " color scheme
-colorscheme spacegray
+" colorscheme spacegray
 let g:spacegray_underline_search = 1
 let g:spacegray_use_italics = 1
 "let g:spacegray_italicize_comments = 1

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ $brews := list
+  "ctags"
+  "direnv"
+  "fzf"
+  "gettext"
+  "git-lfs"
+  "gmp"
+  "htop"
+  "jq"
+  "neovim"
+  "tree"
+  "tmux"
+  "yq"  
+  "youtube-dl"
+-}}
+
+# "helm"
+# "kubectl"
+
+{{ .brew_command }} bundle --no-lock --file=/dev/stdin <<EOT
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+
+EOT

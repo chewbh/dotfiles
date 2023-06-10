@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ $brews := list
+  
+-}}
+
+{{ .brew_command }} bundle --no-lock --file=/dev/stdin <<EOT
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+
+EOT

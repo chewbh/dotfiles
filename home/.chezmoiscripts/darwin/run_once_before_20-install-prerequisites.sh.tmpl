@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+# check if Homebrew is installed
+which -s brew
+if [[ $? != 0 ]] ; then
+    echo 'Homebrew is not installed, install it before continue'
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    {{ .brew_command }} update
+fi
+
+# upgrade to latest
+{{ .brew_command }} upgrade
+
+{{ $brews := list
+  "git"
+  "wget"
+  "zsh"
+-}}
+
+{{ .brew_command }} bundle --no-lock --file=/dev/stdin <<EOT
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+
+EOT
