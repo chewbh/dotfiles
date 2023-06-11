@@ -5,7 +5,5 @@ set -eufo pipefail
 # required for vim packages that leverage on python
 pip3 install pynvim
 
-# handle fzf in vim (update it)
-
+# handle fzf in vim
 chmod +x {{ .chezmoi.homeDir }}/.vim/pack/plugins/start/fzf/install
-{{ .chezmoi.homeDir }}/.vim/pack/plugins/start/fzf/install

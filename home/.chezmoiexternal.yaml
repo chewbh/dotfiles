@@ -18,4 +18,13 @@
   url: "https://github.com/direnv/direnv/releases/download/v2.32.3/direnv.linux-{{ .chezmoi.arch }}"
   executable: true
 
+".local/bin/fzf":
+  type: file
+        https://github.com/junegunn/fzf/releases/download/0.41.1/fzf-0.41.1-linux_amd64.tar.gz
+  url: "https://github.com/junegunn/fzf/releases/download/0.41.1/fzf-0.41.1-linux_{{ .chezmoi.arch }}.tar.gz"
+  filter:
+    command: tar
+    args: ["-x", "-z", "-O", "fzf"]
+  executable: true
+
 {{- template "save-versions-and-revisions-cache" $cache -}}
