@@ -6,10 +6,10 @@
 {{-   $brew_command = "arch -arm64 brew" -}}
 {{- end -}}
 
-
 {{- /* This retains the value passed with --source on chezmoi init, which is used in the ../install.sh script */ -}}
 sourceDir: "{{ .chezmoi.workingTree }}"
 
 {{/* Here we "export" the variables, so we can access them outside this file */ -}}
 data:
   brew_command: {{ $brew_command }}
+  fontsDir: "Library/Fonts"

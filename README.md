@@ -1,55 +1,30 @@
 Boon Heng's dotfiles
 ====================
 
-This is a collection of dotfiles, config and scripts that I have for customizing Linux's OS environment to suit my preference and workflow.
+This is a collection of dotfiles, shell aliases, configuration to set up my personal preferences and commonly used tools in Linux and Mac. 
+It can be used to boostrap a linux based machine.
 
-### Pre-req
+Built both Mac and Ubuntu distribution in mind but should work for debian based linux distribution. Tested with manual configuration, and for use in GitHub Codespaces, and Coder. 
 
-#### ZSH
+Managed using `chezmoi`, a great dotfiles manager.
 
-Install zsh and setup [prezto](https://github.com/sorin-ionescu/prezto) framework
+### Getting started
 
-#### Base16 Theme and Shell
+Ensure `chezmoi` is installed into the system. Simply tun the following command in the terminal:
 
-Install chriskempson's [Base16-Shell](https://github.com/chriskempson/base16-shell) into `~/.config` and select base16_tomorrow-night theme
-
-```bash
-git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
-
-# append the following into zshrc or bashrc
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-# run this command to enable tomorrow-night theme
-base16_tomorrow-night
+```sh
+git clone https://github.com/chewbh/dotfiles "$HOME/.dotfiles"
+"$HOME/.dotfiles/install.sh"
 ```
 
-#### Neovim
+### Terminal Font
 
-1. Install neovim in debian based linux
+This dotfiles uses the ZSH theme [Powerleve10k](https://github.com/romkatv/powerlevel10k), and thus, it requires font with support for the [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts) glyphs installed on the host machine.  
 
-```bash
-apt install neovim
-
-# create and symlink vimrc for neovim
-mkdir -p ~/.config/nvim
-touch ~/.config/nvim/init.vim
-echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" >> ~/.config/nvim/init.vim
-echo "let &packpath = &runtimepath" >> ~/.config/nvim/init.vim
-echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
-```
-
-2. Setup Vundle for plugin management
-
-```bash
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-```
-3. Install the plugins via Vundle by runing `:PluginInstall` in nvim
 
 ### Reference
 
-https://gist.github.com/MohamedAlaa/2961058
+This dotfiles is heavily influenced and referenced by:
 
-### License
+https://github.com/felipecrs/dotfiles
 
-All is freely available under the [MIT License](./LICENSE)
