@@ -7,7 +7,6 @@ readonly wanted_packages=(
   fzf
   gettext
   git-lfs
-  gmp
   htop
   jq
   neovim
@@ -30,9 +29,6 @@ sudo chmod +x /usr/bin/yq
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
 sudo chmod a+rx /usr/local/bin/youtube-dl
 
-# helm
-# kubectl
-
 for package in "${wanted_packages[@]}"; do
   if ! command -v "${package}" >/dev/null; then
     missing_packages+=("${package}")
@@ -41,6 +37,6 @@ done
 
 sudo apt update 2>/dev/null
 if [[ ${#missing_packages[@]} -gt 0 ]]; then
-  log_task "Installing missing package with APT: ${missing_packages[*]}"
+  echo "Installing missing package with APT: ${missing_packages[*]}"
   sudo apt install --yes --allow-change-held-packages "${missing_packages[@]}"
 fi

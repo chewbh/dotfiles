@@ -10,4 +10,5 @@ set -eu
 [ -d "{{ .chezmoi.homeDir }}/.vim/bundle" ] && rm -rf "{{ .chezmoi.homeDir }}/.vim/bundle"
 
 # copy the cached prezto version to home
+mkdir -p {{ .chezmoi.homeDir }}/.vim
 cp -R "{{ .chezmoi.sourceDir }}/../cached/bundle" "{{ .chezmoi.homeDir }}/.vim/bundle"
