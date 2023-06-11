@@ -13,4 +13,9 @@
   type: file
   url: "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/SauceCodeProNerdFontMono-Regular.ttf"  
 
+".local/bin/direnv":
+  type: file
+  url: "https://github.com/direnv/direnv/releases/download/v2.32.3/direnv.linux-{{ .chezmoi.arch }}"
+  executable: true
+
 {{- template "save-versions-and-revisions-cache" $cache -}}
