@@ -3,7 +3,7 @@
 set -eufo pipefail
 
 {{ $brews := list
-  "ctags"
+  "universal-ctags"
   "direnv"
   "fzf"
   "gettext"
@@ -17,9 +17,6 @@ set -eufo pipefail
   "yq"  
   "youtube-dl"
 -}}
-
-# "helm"
-# "kubectl"
 
 {{ .brew_command }} bundle --no-lock --file=/dev/stdin <<EOT
 {{ range ($brews | sortAlpha | uniq) -}}
