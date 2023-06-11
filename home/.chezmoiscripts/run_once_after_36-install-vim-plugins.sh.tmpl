@@ -6,5 +6,6 @@ set -eufo pipefail
 pip3 install pynvim
 
 # handle fzf in vim (update it)
-chmod +x {{ .chezmoi.homeDir }}/.vim/plugins/start/fzf/install
+
+[ -d '{{ .chezmoi.homeDir }}/.vim/plugins/start/fzf/install' ] && chmod +x {{ .chezmoi.homeDir }}/.vim/plugins/start/fzf/install
 {{ .chezmoi.homeDir }}/.vim/plugins/start/fzf/install
