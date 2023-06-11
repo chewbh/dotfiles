@@ -9,12 +9,6 @@
   stripComponents: 1
   exact: true
 
-".vim/bundle/Vundle.vim":
-  type: archive
-  url: "https://github.com/VundleVim/Vundle.vim/archive/refs/tags/v0.10.2.tar.gz"
-  stripComponents: 1
-  exact: true  
-
 "{{ joinPath .fonts_dir .terminalFont.filename }}":
   type: file
   url: "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/SauceCodeProNerdFontMono-Regular.ttf"  
