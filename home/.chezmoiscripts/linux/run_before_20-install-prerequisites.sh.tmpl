@@ -1,0 +1,22 @@
+#!/bin/bash
+
+readonly wanted_packages=(
+  curl  # useful tools
+  git   # used for interaction and to find revision from git repositories
+  wget
+  zsh
+)
+missing_packages=()
+
+for package in "${wanted_packages[@]}"; do
+  if ! command -v "${package}" >/dev/null; then
+    missing_packages+=("${package}")
+  fi
+done
+
+if [[ ${#missing_packages[@]} -gt 0 ]]; then
+  log_task "Installing missing package with APT: ${missing_packages[*]}"
+  sudo apt update 2>/dev/null
+  sudo apt install --yes --no-install-recommends "${missing_packages[@]}"
+
+fi

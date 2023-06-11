@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+# powerline font
+if ! command -v "fonts-powerline" >/dev/null; then
+    sudo apt -y --allow-change-held-packages install fonts-powerline
+fi
+
+
+# resolves issue where terminal powerline is ignored by default and must be explicitly allowed via fontconfig
+# and refresh font cache
+mkdir -p ~/.config/fontconfig/conf.d/ 
+curl https://raw.githubusercontent.com/powerline/fonts/master/fontconfig/50-enable-terminess-powerline.conf -o ~/.config/fontconfig/conf.d/50-enable-terminess-powerline.conf
+fc-cache -vf

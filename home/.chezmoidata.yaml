@@ -1,0 +1,6 @@
+
+fonts_dir : ".local/share/fonts"
+
+terminalFont:
+  filename: SauceCodeProNerdFontMono-Regular.ttf
+  name: Source Code Pro Font Regular

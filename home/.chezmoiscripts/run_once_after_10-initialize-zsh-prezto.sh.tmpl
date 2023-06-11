@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+setopt EXTENDED_GLOB
+
+# create soft links for zsh configuration under prezto
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  [ -f "${ZDOTDIR:-$HOME}/.${rcfile:t}" ] && rm -f "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+
+# change to default shell to zsh
+sudo chsh -s "$(which zsh)" "$(id -un)"
