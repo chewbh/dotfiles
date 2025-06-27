@@ -53,3 +53,8 @@ alias psjava='ps -ef | grep java'
 
 # Log
 alias tf='tail -F -n 100'
+
+# k8s
+alias k='kubectl'
+# alias kn= 'kubens'
+alias kctx='kubectx'

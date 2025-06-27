@@ -12,7 +12,7 @@ fi
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-# # source additional customization specific to os                         
+# # source additional customization specific to os
 # [[ -f "$HOME/dotfiles/.zsh_os_custom.sh" ]] && source "$HOME/dotfiles/.zsh_os_custom.sh"
 
 # Source Prezto.
@@ -23,7 +23,7 @@ fi
 # Customizations
 ###################################
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export VISUAL=$EDITOR
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
@@ -37,6 +37,9 @@ export LSCOLORS="Gxfxcxdxbxegedabagacad"
 export BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
+export PATH=$PATH:/opt/homebrew/bin
+export PATH=$HOME/.local/bin:$PATH
+
 # zsh users - add the following line to your ~/.zshrc
 eval "$(direnv hook zsh)"
 
@@ -46,11 +49,16 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
+## android
+[ -d "$HOME/Library/Android/sdk" ] && ANDROID_HOME=$HOME/Library/Android/sdk || ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_HOME=$ANDROID_HOME
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+
 # # add path for yarn
 # export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 
-# # add path for golang
-# export PATH=$PATH:/usr/local/go/bin
+# add path for golang
+export PATH=$PATH:/Users/boonheng/go/bin
 
 # # added by Anaconda2 installer
 # export PATH="$HOME/anaconda2/bin:$PATH"
@@ -61,4 +69,11 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # export SDKMAN_DIR="/home/boonheng/.sdkman"
 # [[ -s "/home/boonheng/.sdkman/bin/sdkman-init.sh" ]] && source "/home/boonheng/.sdkman/bin/sdkman-init.sh"
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/boonheng/development/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/boonheng/development/google-cloud-sdk/path.zsh.inc'; fi
 
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/boonheng/development/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/boonheng/development/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/boonheng/.lmstudio/bin"
