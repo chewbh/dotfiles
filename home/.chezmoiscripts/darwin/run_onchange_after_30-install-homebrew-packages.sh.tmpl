@@ -12,15 +12,29 @@ set -eufo pipefail
   "htop"
   "jq"
   "neovim"
+  "pipx"
   "tree"
   "tmux"
+  "uv"
   "yq"  
-  "youtube-dl"
+  "yt-dlp"
 -}}
 
-{{ .brew_command }} bundle --no-lock --file=/dev/stdin <<EOT
+{{ $brews_cask := list
+  "font-meslo-lg-nerd-font"
+  "font-fira-code-nerd-font"
+  "font-hack-nerd-font"
+  "font-source-code-pro"
+-}}
+
+{{ .brew_command }} bundle --file=/dev/stdin <<EOT
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
-
+{{ range ($brews_cask | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
 EOT
+
+
+
