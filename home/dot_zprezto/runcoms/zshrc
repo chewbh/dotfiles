@@ -77,3 +77,5 @@ if [ -f '/Users/boonheng/development/google-cloud-sdk/completion.zsh.inc' ]; the
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/boonheng/.lmstudio/bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
